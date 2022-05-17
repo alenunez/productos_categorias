@@ -25,6 +25,9 @@ Route::get('/categorias',[CategoriaController::class,'index']);//mostrar todos l
 Route::get('/productos',[ProductoController::class,'index']);//mostrar todos los registros
 Route::get('/productosPrueba',[ProductoController::class,'prueba']);//mostrar todos los registros
 
+Route::get('/productosJoin',[ProductoController::class,'innerJoin']);//mostrar todos los registros
+
+
 Route::get('/productos/{id}',[ProductoController::class,'findById']);//mostrar registro por id
 
 Route::post('/categorias',[CategoriaController::class,'store']);//Guardar un registro

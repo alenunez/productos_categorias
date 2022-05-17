@@ -47,6 +47,16 @@ class ProductoController extends Controller
         );
     }
 
+    public function innerJoin(){
+        $data= Producto::join('categorias','categorias.id','=','productos.id_categoria')
+                ->get(['productos.id','productos.id_categoria','categorias.descripcion'])
+                ;
+
+    return response()->json(    
+        $data
+    );
+    }
+
     public function prueba(){
         $producto = Producto::all();
         $size = count($producto);
