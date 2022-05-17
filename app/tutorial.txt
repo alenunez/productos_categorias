@@ -1,0 +1,26 @@
+APl rest con relaciones laravel
+Se crea el proyecto con laravel new nombreDelProyecto
+Se crean la base de datos en phpmyadmin con el nombre que aparece en el archivo .env
+Se crean los modelos con php artisan make:model Modelo
+Se hacen las migraciones de las tablas php artisan make:migration create_categoria_table
+Al campo descripción de categoría se le coloca nullable    $table->string('descripcion')->nullable; para que acepte valores null
+En la tabla productos se crea la llave foránea a categoría            
+ $table->foreignId('id_categoria')
+                  ->nullable()
+                  ->constrained('categoria')
+                  ->cascadeOnUpdate()
+                  ->nullOnDelete();
+cascadeOnUpdate cuando se actualiza un campo se actualizan también donde es llave foránea
+nullOnDelete cuando se borra la llave foránea queda en null
+Se hacen las migraciones con php artisan migrate
+Para establecer la relación hay que establecer una función en cada modelo
+En el modelo categoría se crea la función  public function productos(){     return $this->hasMany(Producto::class,'id');   }
+
+En el modelo producto de crea la función     public function categorias(){ return $this->belongsTo(Categoria::class,'id_categoria');    }
+
+Se crea el controlador php artisan make:controller PrincipalControlador
+
+
+
+
+
